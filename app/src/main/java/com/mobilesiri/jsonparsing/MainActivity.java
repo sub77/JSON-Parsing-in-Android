@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
@@ -19,13 +20,13 @@ import java.util.HashMap;
 public class MainActivity extends ListActivity {
 
     // URL to get contacts JSON
-    private static String url = "https://raw.githubusercontent.com/mobilesiri/JSON-Parsing-in-Android/master/index.html";
+    private static String url = "http://android.comtek-wiebe.de/.mix/pubList.json";
 
     // JSON Node names
-    private static final String TAG_STUDENTINFO = "studentsinfo";
+    private static final String TAG_STUDENTINFO = "studentinfo";
     private static final String TAG_ID = "id";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_EMAIL = "email";
+    private static final String TAG_NAME = "sname";
+    private static final String TAG_EMAIL = "semail";
     private static final String TAG_ADDRESS = "address";
     private static final String TAG_GENDER = "gender";
     private static final String TAG_PHONE = "phone";
@@ -36,6 +37,8 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ListView viewById = (ListView) findViewById(R.id.list_item);
 
         // Calling async task to get json
         new GetStudents().execute();
